@@ -1,11 +1,11 @@
-import  tic_tac_toe_code as r
+import  tic_tac_toe_code as t
 def minmax(boards,depth,maximizing):
    scores={'X':-1,'O':1,'Tie':0}
-   result = r.check_winner()
-   if result:
-      return scores[result]
+   result = t.check_winner()
+   if result or t.is_board_full():
+      return scores.get(result, 0) 
    if maximizing :
-      best_score=float('-inif')
+      best_score=float('-inf')
       for i in range(3):
          for j in range(3):
             if boards[i][j]==' ':

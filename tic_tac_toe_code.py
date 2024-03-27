@@ -1,4 +1,7 @@
-from minmax_algo import minmax
+current_player='X'
+import minmax_algo 
+import visuals
+import main
 board=[[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 def create_board():
     for row in board:
@@ -13,7 +16,7 @@ def check_winner():
      if board[0][0]==board[1][1]==board[2][2]!=' ':
         return board[0][0]
      elif board[0][2]==board[1][1]==board[2][0]!=' ':
-        return board[0][0]
+        return board[0][2]
     if all(board[i][j]!=' 'for i in range(3) for j in range(3)):
      return 'tie'
     return None
@@ -39,10 +42,16 @@ def get_ai_move():
       for j in range(3):
          if board[i][j]==' ':
             board[i][j]='O'
-            score=minmax(board,0,False)
+            score=minmax_algo.minmax(board,0,False)
             board[i][j]=' '
             if score >best_score:
                best_score=score
                best_move=(i,j)
    return best_move
+def is_board_full():
+    for row in board:
+        for cell in row:
+            if cell == ' ':
+                return False 
+    return True 
 
